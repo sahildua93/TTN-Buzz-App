@@ -1,7 +1,11 @@
 # TTN-BUZZ
 
 #### To get started
-### setup
+### Setup
 ------------------------
 
 * npm install
+
+### Compile
+------------------------
+* npm run compile
