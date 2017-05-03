@@ -1,0 +1,5 @@
+ets": [
+    ["latest", { "modules": false }],
+    "react"
+  ]
+}

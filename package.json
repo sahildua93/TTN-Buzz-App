@@ -1,11 +1,18 @@
 {
   "name": "ttn-buzz",
   "version": "1.0.0",
-  "description": "",
+  "description": "TTN-Buzz",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "sahildua93 <sahild.dua@tothenew.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  }
 }
