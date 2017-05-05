@@ -1,4 +1,7 @@
 const path = require('path');
+const htmlPlugin = require('html-webpack-plugin');
+const liveReload = require('webpack-livereload-plugin')
+const webpack = require('webpack')
 
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -10,19 +13,31 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [
+        loaders: [
             {
-                test:/\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    'babel-loader',
-                ],
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/},
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
             },
-        ],
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
+            }
+
+        ]
     },
-    resolve: {
-        module: [
-            path.join(__dirname, 'node_modules'),
-        ],
-    },
+    plugins: [
+        new htmlPlugin({
+            template: './client/index.html',
+            filename: 'index.html'
+
+        }),
+        new liveReload()
+    ]
 };

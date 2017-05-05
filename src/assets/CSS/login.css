@@ -1,0 +1,75 @@
+/* Bordered form */
+.loginMain {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    background-color: rgba(31,20,66,0.49);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.labelLogin {
+    text-align: center;
+    display: block;
+    line-height: 150%;
+    font-size: 15px;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+    border-radius:4px;
+}
+
+
+/* Set a style for all buttons */
+.button {
+    background-color: rgba(200, 70, 67, 0.75);
+    font-size: larger;
+    color: white;
+    padding: 14px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius:4px;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    width: 50%;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+    width: 20%;
+    border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+    width: 100%;
+    padding: 16px;
+}
+
+.main {
+    position: relative;
+}
+
+.blackTint {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.background-image {
+    background-size: 100%;
+    width: 100%;
+
+}
