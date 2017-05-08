@@ -1,0 +1,101 @@
+.main-buzz{
+    border: 1px solid #dddddd;
+    width: 50%;
+    height: auto;
+    display: inline-block;
+    background-color: white;
+    margin:50px;
+    /*margin-right:50px;*/
+}
+
+
+
+
+textarea {
+    width: 95%;
+    height: 90px;
+    resize: none;
+    margin: 12px;
+
+}
+
+.header{
+    margin-bottom: 10px;
+}
+
+.header select {
+    margin-left: 15px;
+    height: 31px;
+    background-color: aquamarine;
+    border: none;
+    outline: none;
+}
+
+.header input[type="submit"]{
+    float: right;
+    margin-right: 10px;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    display: inline-block;
+    padding: 3px;
+}
+
+.post {
+    float: left;
+    background-color: #ffffff;
+    width: 50%;
+    margin-left: 50px;
+    margin-bottom: 15px;
+}
+
+.postheader {
+    overflow: hidden;
+}
+
+.postheader img {
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    float: left;
+}
+
+.postby{
+    float: left;
+    width: 202px;
+    margin-left: 10px;
+}
+
+.postby span {
+    display: block;
+}
+
+.actorlost {
+    float: right;
+    background-color: #000;
+    color: #fff;
+    margin: 10px;
+    padding: 2px;
+
+}
+
+.image {
+    padding-top: 15px;
+    padding-left: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.image img {
+    width: 250px;
+    height: 250px;
+    float: left;
+}
+
+.image p {
+    margin-left: 10px;
+    float: left;
+    width: 150px;
+    margin-right: 2px;
+}

@@ -6,6 +6,11 @@ const webpack = require('webpack');
 const webpackConfig = require('../../webpack.config');
 const router = require('./Routes/route')
 const app = express();
+const morgan = require('morgan')
+const htmlPlugin = require('html-webpack-plugin');
+
+app.use(morgan('dev'))
+
 require ('./API/Config/datasource')
 
 
@@ -27,6 +32,10 @@ app.use(webpackDevMiddleware(compiler, {
 
 router(app);
 
+app.use('*/', (req, res) => {
+    console.log("++++");
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+})
 
 const server = app.listen(3004, function () {
     const host = server.address().address;

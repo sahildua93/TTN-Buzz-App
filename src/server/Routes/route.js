@@ -3,8 +3,9 @@
  */
 
 let passport = require('passport');
+let flash = require('connect-flash')
 let express = require('express');
-let expressSession = require('express-session')
+let expressSession = require('express-session');
 let GoogleStrategy = require('../Passport/google.auth');
 
 
@@ -12,25 +13,36 @@ module.exports =(app) => {
 
     app.use(expressSession({secret: '123456789'}),
         passport.initialize(),
-        passport.session()
-    );
+        passport.session());
 
     GoogleStrategy.googleAuth();
 
-    app.get('/login', passport.authenticate('google', {scope: ["profile","email"]}));
+    app.get('/api/login', passport.authenticate('google', {scope: ["profile","email"]}));
 
-    app.get('/profile', function (req, res) {
-        res.sendFile('/home/sahil-dua/TTN-Buzz/src/assets/about.html')
+    app.get('/api/profile',isLoggedin, function (req, res) {
+        res.redirect('/profile')
     });
 
     app.get('/oauth2callback', passport.authenticate('google', {
-        successRedirect: '/profile',
-        failureRedirect: 'http://localhost:3004/'
+        successRedirect: '/api/profile',
+        failureRedirect: '/'
     }));
 
 
-//
-// app.get('/logout', function (req, res) {
+
+    function isLoggedin(req, res, next) {
+        if(req.isAuthenticated()){
+            console.log('sdasnajsfbabfhjajfjhafjha')
+            return next();
+        }
+        else {
+            console.log('----------------------asdasdas')
+            res.redirect('/')
+        }
+    }
+
+
+// app.get('/api/logout', function (req, res) {
 //     req.session.destroy();
 //     req. logout();
 //     res.redirect('/login');

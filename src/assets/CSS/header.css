@@ -1,0 +1,27 @@
+body{
+    margin: 0 50px;
+}
+
+.top-header{
+    /*background-color: #ddd;*/
+    position: relative;
+}
+.logo-image{
+    position: absolute;
+    top:0;
+    left:5%;
+    border: 1px solid #ddd;
+}
+
+
+.button-logout {
+    background-color: #ce1a16;
+    color: white;
+    padding: 7px;
+    font-weight:bold;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius:4px;
+    display: block;
+    text-align: center;
+}

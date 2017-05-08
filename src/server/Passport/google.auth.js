@@ -20,7 +20,8 @@ exports.googleAuth = () => {
                             return done(err)
                         }
                         if(user){
-                           return done(null, profile)
+                            console.log('user present ----------------------')
+                            return done(null, profile)
                         }
                         else {
                             let newUser = new User({
@@ -35,9 +36,10 @@ exports.googleAuth = () => {
                     })
                 })
             }
-            else
+            else {
+                console.log("signout from sahildua93@gmail.com")
                 return done(null);
-
+            }
 
         }
     ))

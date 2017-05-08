@@ -33,11 +33,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new htmlPlugin({
-            template: './client/index.html',
-            filename: 'index.html'
-
-        }),
         new liveReload()
     ]
 };
