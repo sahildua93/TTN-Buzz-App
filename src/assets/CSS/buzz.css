@@ -26,20 +26,25 @@ textarea {
 .header select {
     margin-left: 15px;
     height: 31px;
-    background-color: aquamarine;
+    background-color: rgba(242, 151, 18, 0.84);
     border: none;
     outline: none;
+    border-radius: 5px;
 }
 
 .header input[type="submit"]{
     float: right;
     margin-right: 10px;
-    background-color: #000;
+    background-color:rgba(242, 151, 18, 0.84);
     color: #fff;
     text-transform: uppercase;
     border: none;
     display: inline-block;
-    padding: 3px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
 }
 
 .post {
@@ -98,4 +103,34 @@ textarea {
     float: left;
     width: 150px;
     margin-right: 2px;
+}
+
+.camera-upload {
+    margin-left: 15px;
+    font-size: 30px;
+}
+
+.header {
+    overflow: hidden;
+}
+
+.header select {
+    float: left;
+}
+
+.image_upload {
+    width: 50px;
+    float: left;
+}
+
+.image_upload a {
+    text-decoration: none;
+    cursor: pointer;
+    width: 50px;
+}
+
+.image_upload input[type="file"] {
+    /*margin-top: -28px;*/
+    /*width: 50px;*/
+    /*opacity: 0;*/
 }

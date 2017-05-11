@@ -3,6 +3,7 @@
  */
 
 import React, {Component} from 'react';
+import '../../assets/CSS/login.css'
 
 export default class Login extends Component {
 
@@ -12,7 +13,7 @@ export default class Login extends Component {
                 <img  className="background-image" src={require('../../assets/images/background.jpg')}/>
                 <div className="blackTint"></div>
                 <div className="loginMain">
-                    <form action="http://localhost:3004/api/login">
+                    <form action="/api/login">
                         <div className="imgcontainer">
                             <img src={require('../../assets/images/img_avatar2.png')} alt="Avatar" className="avatar"/>
                         </div>
@@ -26,6 +27,4 @@ export default class Login extends Component {
             </div>
         )
     }
-
-
 }

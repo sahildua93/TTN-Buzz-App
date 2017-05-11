@@ -3,20 +3,16 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const favicon = require('serve-favicon');
 const path = require('path');
 const webpack = require('webpack');
+const passport = require('passport');
+const expressSession = require('express-session');
 const webpackConfig = require('../../webpack.config');
-const router = require('./Routes/route')
+const router = require('./Routes/route');
+const bodyParser = require('body-parser');
 const app = express();
-const morgan = require('morgan')
-const htmlPlugin = require('html-webpack-plugin');
 
-app.use(morgan('dev'))
-
-require ('./API/Config/datasource')
-
+require ('./Config/datasource')
 
 const compiler = webpack(webpackConfig);
-
-app.use(express.static(__dirname +'../assets'));
 
 app.use(favicon(path.join(__dirname, '../assets', 'images', 'favicon.ico')));
 
@@ -30,12 +26,15 @@ app.use(webpackDevMiddleware(compiler, {
     historyApiFallback: true,
 }))
 
-router(app);
+app.use(bodyParser(),
+    expressSession({secret: '123456789'}),
+    passport.initialize(),
+    passport.session());
 
-app.use('*/', (req, res) => {
-    console.log("++++");
+router(app);
+app.use('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
-})
+});
 
 const server = app.listen(3004, function () {
     const host = server.address().address;

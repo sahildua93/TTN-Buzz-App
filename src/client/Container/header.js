@@ -11,11 +11,12 @@ export default class Header extends Component{
         return(
             <div className="top-header">
                 <div className="btn-group pull-right">
-                    <button className="button-logout">Logout</button>
-
+                    <form action="/api/logout">
+                        <button type="submit" className="button-logout" value="Logout">Logout</button>
+                    </form>
                 </div>
 
-                <img src={require('../../assets/images/wallpaper-quote.jpg')} className="img-responsive" alt="Highway Of london" />
+                <img src={require('../../assets/images/road.jpg')} className="img-responsive background-image-profile" alt="Highway Of london" />
 
                 <div className="logo-image">
                     <img src={require('../../assets/images/logo.jpg')} className="img-responsive" alt="Logo"/>

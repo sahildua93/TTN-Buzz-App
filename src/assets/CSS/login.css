@@ -56,12 +56,8 @@ img.avatar {
     padding: 16px;
 }
 
-.components {
-    overflow: hidden;
-}
-
-.main-profile {
-    background-color: rgba(130,214,77,0.41);
+.main {
+    position: relative;
 }
 
 .blackTint {

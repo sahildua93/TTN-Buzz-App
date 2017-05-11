@@ -13,6 +13,11 @@ body{
     border: 1px solid #ddd;
 }
 
+.background-image-profile{
+    max-height:330px;
+    background-size: 100%;
+    width: 100%;
+}
 
 .button-logout {
     background-color: #ce1a16;
@@ -25,3 +30,4 @@ body{
     display: block;
     text-align: center;
 }
+

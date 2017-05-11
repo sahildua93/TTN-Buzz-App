@@ -24,31 +24,33 @@ exports.googleAuth = () => {
                             return done(null, profile)
                         }
                         else {
-                            let newUser = new User({
-                                username : profile.displayName,
-                                email_id : profile.emails[0].value,
-                                image_url : profile.photos[0].value,
-                            });
-                            service.createUser(newUser)
-                            done(null, newUser)
 
+                            service.createUser(profile,(err,newUser)=>{
+                                if(err){
+                                    return done(err);
+                                }
+                                else {
+                                    done(null, newUser);
+                                }
+                            })
                         }
                     })
                 })
             }
             else {
-                console.log("signout from sahildua93@gmail.com")
+                console.log("signIn from tothenew ID")
                 return done(null);
             }
-
         }
     ))
 }
 
 passport.serializeUser( function (user, done) {
-    done(null, user);
+    done(null, user.id);
 })
 
 passport.deserializeUser( function (id, done) {
-    done(null, id);
+    User.findOne({google_id:id}, function (err, user) {
+        done(null, user);
+    })
 })
