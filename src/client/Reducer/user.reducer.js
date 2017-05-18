@@ -11,7 +11,7 @@ const initialState = {
     loading : false,
     user: {},
     error: null,
-}
+};
 
 export default function (state = initialState, action) {
     switch (action.type){

@@ -18,13 +18,13 @@ exports.createBuzz = (buzzData, callback) => {
 };
 
 exports.fetchBuzz = (callback) => {
-    Buzz.find({}, (err, allBuzz) => {
-        if (err) {
+    Buzz.find({}).sort({createdAt:-1}).exec((err,buzzData) => {
+        if(err){
             console.log('Error while populating buzzes', err);
         }
-        else {
-            console.log('All buzz populated !!!');
-            callback(null, allBuzz);
+        else{
+            console.log('All buzz populated !!!')
+            callback(null,buzzData);
         }
     })
 };

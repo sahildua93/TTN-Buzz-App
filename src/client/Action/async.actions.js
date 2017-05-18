@@ -14,7 +14,13 @@ import {
     fetchBuzzFailure,
     likeDislikeStarted,
     likeDislikeSuccess,
-    likeDislikeFailure
+    likeDislikeFailure,
+    createCommentStarted,
+    createCommentSuccess,
+    createCommentFailure,
+    fetchCommentsStarted,
+    fetchCommentsSuccess,
+    fetchCommentsFailure,
 } from './action'
 import fetch from 'isomorphic-fetch';
 
@@ -73,7 +79,7 @@ export const fetchBuzz = () => (dispatch) => {
         })
 };
 
-export const likeDislike = (userDetails) => (dispatch, getStore) => {
+export const likeDislike = (userDetails) => (dispatch) => {
     dispatch(likeDislikeStarted());
     fetch('http://localhost:3004/Buzz/like-dislike',
         {
@@ -86,15 +92,52 @@ export const likeDislike = (userDetails) => (dispatch, getStore) => {
         })
         .then(response => response.json())
         .then(data => {
-            const store = getStore();
-            console.log("gettong store",store);
-            // const store = getStore();
-            // const currentBuzz = store.buzz.buzz && store.buzz.buzz.find((buzz) => (buzz._id === data.buzz_id));
-            // currentBuzz.likes_dislikes = [...currentBuzz.likes_dislikes.filter((op) => (op.user_id !== data.user_id)), data];
-            // console.log(currentBuzz, '##################');
             dispatch(likeDislikeSuccess(data));
         })
         .catch(error => {
             dispatch(likeDislikeFailure(error));
         })
 };
+
+export const commentCreate = (newComment) => {
+    return (dispatch) => {
+        dispatch(createCommentStarted());
+        fetch('http://localhost:3004/Comment/create-comment',
+            {
+                method: 'post',
+                credentials: "include",
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'},
+                body: JSON.stringify(newComment),
+            })
+            .then(response => {
+                console.log("response>>>>>>", response);
+                return response.json()
+            })
+            .then(data => {
+                console.log('createsuccess------------------', data);
+                dispatch(createCommentSuccess(data))
+            })
+            .catch(error => {
+                dispatch(createCommentFailure(error));
+            })
+    }
+};
+
+export const fetchComments = () => (dispatch) => {
+    dispatch(fetchCommentsStarted());
+    fetch('http://localhost:3004/Comment/fetch-comments',
+        {
+            method: 'get',
+            credentials: "include"
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(fetchCommentsSuccess(data))
+        })
+        .catch(error => {
+            dispatch(fetchCommentsFailure(error));
+        })
+};
+

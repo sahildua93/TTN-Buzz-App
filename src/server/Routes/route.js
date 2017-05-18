@@ -18,6 +18,7 @@ module.exports = (app) => {
 
     app.use('/Users',require('../API/User/index'));
     app.use('/Buzz',require('../API/Buzz/index'));
+    app.use('/Comment',require('../API/Comments/index'));
 
     app.get('/api/profile', (req, res) => {
         res.redirect('/profile');

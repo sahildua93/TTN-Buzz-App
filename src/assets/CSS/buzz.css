@@ -49,6 +49,8 @@ textarea {
     background-color: #ffffff;
     margin-bottom: 15px;
     border-radius: 20px;
+    border: 2px solid #c1b9b9;
+
 }
 
 .postheader {
@@ -148,7 +150,7 @@ textarea {
 .like-dislike-section {
     height: 50px;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .glyphicon-uploads {
@@ -158,6 +160,7 @@ textarea {
 
 .like-section {
     display: inline-block;
+    padding-right: 10px;
 }
 
 .dislike-section {
@@ -166,6 +169,27 @@ textarea {
 
 .comment-section {
     display: inline-block;
+}
+.comment-box{
+}
+.comments-image {
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+}
+.comment-button {
+    float: right;
+    margin-right: 10px;
+    background-color: rgba(242, 151, 18, 0.84);
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
 }
 /*.populate-buzz{*/
     /*border: 1px solid #dddddd;*/

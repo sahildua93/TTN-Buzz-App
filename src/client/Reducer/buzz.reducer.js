@@ -19,7 +19,7 @@ const initialState = {
     creating: false,
     likes_updated: false,
     created: false,
-}
+};
 
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -72,28 +72,19 @@ export default function (state = initialState, action) {
             }
         }
         case LIKE_DISLIKE_SUCCESS : {
-            const Buzz = state.buzz;
-
-            console.log('previous buzz -----XXXX', Buzz);
-            //console.log('data in reducer', action.data);
-            let _buzz = [ ...Buzz ];
-            const currentBuzz = _buzz.find((buzz) => (buzz._id === action.data.buzz_id));
-            console.log("previous current buzz ",currentBuzz)
-           let indexOfLike= currentBuzz.likes_dislikes.indexOf(action.data.userId);
-          // console.log("action data",action.data);
-          // console.log("like-dislike array",currentBuzz.likes_dislikes);
+            const Buzz = JSON.stringify(state.buzz);
+            const newBuzz = JSON.parse(Buzz);
+            const currentBuzz = newBuzz.find((buzz) => (buzz._id === action.data.buzz_id));
            let newObj = currentBuzz.likes_dislikes.find((items) => (items.user_id === action.data.user_id));
-           //console.log("index of like",newObj);
-           let indexOfLikes = currentBuzz.po.indexOf(newObj);
-          // console.log("index is :",indexOfLikes);
-           currentBuzz.likes_dislikes.splice(indexOfLikes,1,action.data);
-            state.buzz = _buzz
+           newObj.option = action.data.option;
             console.log('updatedcurrent buzz-------zzz',currentBuzz);
-            return {
+            let _updatedState = {
                 ...state,
-                buzz: _buzz,
+                buzz: newBuzz,
                 likes_updated: true,
-            }
+            };
+            console.log('Updated state is ', _updatedState);
+            return _updatedState;
         }
         case LIKE_DISLIKE_FAILURE : {
             return {

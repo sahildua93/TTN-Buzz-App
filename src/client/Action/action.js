@@ -15,6 +15,12 @@ import {
     LIKE_DISLIKE_STARTED,
     LIKE_DISLIKE_SUCCESS,
     LIKE_DISLIKE_FAILURE,
+    CREATE_COMMENT_STARTED,
+    CREATE_COMMENT_SUCCESS,
+    CREATE_COMMENT_FAILURE,
+    FETCH_COMMENTS_STARTED,
+    FETCH_COMMENTS_SUCCESS,
+    FETCH_COMMENTS_FAILURE,
 } from '../Config/constant';
 
 
@@ -59,10 +65,32 @@ export function likeDislikeStarted() {
 }
 
 export function likeDislikeSuccess(data) {
-    console.log('dataaaaaaa---a-a-a-a-a-a---', data);
     return({ type: LIKE_DISLIKE_SUCCESS, data })
 }
 
 export  function likeDislikeFailure(err) {
     return({ type: LIKE_DISLIKE_FAILURE, err })
+}
+
+export function createCommentStarted() {
+    return({ type: CREATE_COMMENT_STARTED })
+}
+
+export function createCommentSuccess(data) {
+    return({ type: CREATE_COMMENT_SUCCESS, data })
+}
+
+export  function createCommentFailure(err) {
+    return({ type: CREATE_COMMENT_FAILURE, err })
+}
+export function fetchCommentsStarted() {
+    return({ type: FETCH_COMMENTS_STARTED })
+}
+
+export function fetchCommentsSuccess(data) {
+    return({ type: FETCH_COMMENTS_SUCCESS, data })
+}
+
+export  function fetchCommentsFailure(err) {
+    return({ type: FETCH_COMMENTS_FAILURE, err })
 }

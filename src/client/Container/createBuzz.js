@@ -17,15 +17,14 @@ class CreateBuzz extends Component{
             file: '',
         }
     }
-    testImage = (event) => {
+    imageUpload = (event) => {
         const file = event.target.files[0];
         this.setState({ file })
     };
 
     eventHandler = (event) => {
         this.setState({creater:this.props.userId});
-        this.setState({[event.target.name]: event.target.value}, function () {
-        })
+        this.setState({[event.target.name]: event.target.value})
     };
 
     createBuzzOnSubmit = (e) => {
@@ -57,7 +56,7 @@ class CreateBuzz extends Component{
                             </select>
                             <div className="image_upload">
                                 <a className="glyphicon glyphicon-camera camera-upload" />
-                                <input type="file" name="image_url" onChange={this.testImage} />
+                                <input type="file" name="image_url" onChange={this.imageUpload} />
                             </div>
                             <input type="submit" value="submit" onClick={this.createBuzzOnSubmit}/>
                         </div>

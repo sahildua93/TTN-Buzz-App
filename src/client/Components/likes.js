@@ -3,8 +3,8 @@ export default ({ buzzDetails, buzzId }) => {
     let filteredArray = buzzDetails.find((item) => item._id === buzzId);
     let count_like = filteredArray.likes_dislikes.filter((item) => item.option === 'like').length;
     return(
-        <p>
+        <span>
             {count_like}
-        </p>
+        </span>
     )
 }
