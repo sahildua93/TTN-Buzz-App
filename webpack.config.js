@@ -1,7 +1,7 @@
 const path = require('path');
 const htmlPlugin = require('html-webpack-plugin');
-const liveReload = require('webpack-livereload-plugin')
-const webpack = require('webpack')
+const liveReload = require('webpack-livereload-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -29,8 +29,11 @@ module.exports = {
                     'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }
-
         ]
+    },
+    devServer: {
+        hot: true,
+        inline: true,
     },
     plugins: [
         new liveReload()

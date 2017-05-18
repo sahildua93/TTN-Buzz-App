@@ -1,0 +1,23 @@
+
+.main-profile {
+    background-color: rgba(192, 188, 180, 0.7);
+    border: 5px solid #f1f1f1;
+    height: auto;
+}
+.buzz {
+    display: inline-block;
+    width: 70%;
+    margin-left: 1%;
+}
+
+.create-buzz {
+    background-color: white;
+    margin-bottom: 7%;
+    margin-top: 6px;
+    border-radius: 20px;
+}
+
+.populate-buzz {
+    /*overflow: hidden;*/
+
+}

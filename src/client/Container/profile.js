@@ -1,22 +1,32 @@
-
 import React, { Component } from 'react';
 import Header from './header';
 import SideBar from './sidebar';
 import CreateBuzz from './createBuzz';
+import PopulateBuzz from './populateBuzz';
 import '../../assets/CSS/header.css'
-export default class Profile extends Component{
+import '../../assets/CSS/buzz.css'
+import '../../assets/CSS/profile.css'
 
-    render(){
-        return(
+export default class Profile extends Component {
+
+    render() {
+        return (
+            <div>
+                <Header/>
                 <div className="main-profile">
-                    <Header/>
-                    <div className="components">
+                    <div className="sidebar">
                         <SideBar/>
-                        <CreateBuzz/>
+                    </div>
+                    <div className="buzz">
+                        <div className="create-buzz">
+                            <CreateBuzz/>
+                        </div>
+                        <div className="populate-buzz">
+                            <PopulateBuzz/>
+                        </div>
                     </div>
                 </div>
+            </div>
         )
     }
-
-
 }

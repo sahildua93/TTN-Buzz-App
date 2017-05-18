@@ -9,20 +9,21 @@ const GoogleStrategy = require('../Passport/google.auth');
 module.exports = (app) => {
 
     GoogleStrategy.googleAuth();
-    app.get('/api/login', passport.authenticate('google', {scope: ["profile", "email"]}));
+
+    app.get('/api/login',passport.authenticate('google', {scope: ["profile", "email"]}));
     app.get('/oauth2callback', passport.authenticate('google', {
-        successRedirect: '/api/profile',
+        successRedirect: '/profile',
         failureRedirect: '/'
     }));
 
-    //app.use(isLoggedin);
-
-    app.use('/Users',require('../API/User/index.js'));
+    app.use('/Users',require('../API/User/index'));
     app.use('/Buzz',require('../API/Buzz/index'));
-    app.get('/api/profile', function (req, res) {
-        res.redirect('/profile')
+
+    app.get('/api/profile', (req, res) => {
+        res.redirect('/profile');
     });
-    app.get('/api/logout', function (req, res) {
+
+    app.get('/api/logout', (req, res) =>{
         req.logout();
         res.redirect('/');
     });

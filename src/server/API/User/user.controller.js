@@ -6,4 +6,4 @@ const userService = require('./user.service');
 
 exports.getUser = (req, res) => {
     res.send(req.user);
-}
+};

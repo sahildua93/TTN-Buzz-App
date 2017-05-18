@@ -3,13 +3,13 @@
  */
 const User = require('./user.model');
 
-exports.createUser = function (profile, callback) {
+exports.createUser = (profile, callback) => {
     User.create({
         google_id: profile.id,
         username: profile.displayName,
         email_id: profile.emails[0].value,
         image_url: profile.photos[0].value,
-    }, function (err, data) {
+    }, (err, data) => {
         if (err) {
             console.log('Error while creating new User !', err);
             callback(err);
@@ -19,7 +19,7 @@ exports.createUser = function (profile, callback) {
             callback(null, data);
         }
     })
-}
+};
 
 exports.getUser = (user) => {
     User.find({}, (err, data) => {
@@ -28,4 +28,4 @@ exports.getUser = (user) => {
         if (data)
             res.send(data);
     })
-}
+};

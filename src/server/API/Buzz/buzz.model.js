@@ -2,8 +2,8 @@
  * Created by sahil-dua on 9/5/17.
  */
 
-const mongoose = require('mongoose')
-require('../../Config/datasource')
+const mongoose = require('mongoose');
+require('../../Config/datasource');
 
 const buzzSchema = new mongoose.Schema(
     {
@@ -14,12 +14,17 @@ const buzzSchema = new mongoose.Schema(
             type: String
         },
         category : {
-            type : String
+            type : String,
         },
         image : {
             type : String
         },
-    }, {versionKey : false, timestamps : true}
-)
+        user_picture: {
+            type: String
+        },
+        likes_dislikes: [],
 
-module.exports = mongoose.model('Buzz', buzzSchema)
+    }, {versionKey : false, timestamps : true}
+);
+
+module.exports = mongoose.model('Buzz', buzzSchema);

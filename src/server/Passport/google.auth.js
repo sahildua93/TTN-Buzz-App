@@ -1,8 +1,8 @@
-const OauthConstants = require('../Constants/constant')
+const OauthConstants = require('../Constants/constant');
 let passport = require('passport');
 let googleStrategy = require('passport-google-oauth2').Strategy;
-let User = require('../API/User/user.model')
-let service = require('../API/User/user.service')
+let User = require('../API/User/user.model');
+let service = require('../API/User/user.service');
 
 exports.googleAuth = () => {
     passport.use(new googleStrategy({
@@ -11,20 +11,19 @@ exports.googleAuth = () => {
         callbackURL: OauthConstants.CALLBACK_URL,
         passReqToCallback: true,
         },
-        function (request, accessToken, refreshToken, profile, done) {
+        (request, accessToken, refreshToken, profile, done) => {
             if(profile._json.domain==='tothenew.com'){
-                console.log("inside profile ---------------------------")
-                process.nextTick(function () {
-                    User.findOne({'email_id': profile.email}, function (err, user) {
+                console.log("inside profile ---------------------------");
+                process.nextTick(() => {
+                    User.findOne({'email_id': profile.email}, (err, user) => {
                         if(err){
-                            return done(err)
+                            return done(err);
                         }
                         if(user){
-                            console.log('user present ----------------------')
-                            return done(null, profile)
+                            console.log('user present ----------------------');
+                            return done(null, profile);
                         }
                         else {
-
                             service.createUser(profile,(err,newUser)=>{
                                 if(err){
                                     return done(err);
@@ -38,19 +37,19 @@ exports.googleAuth = () => {
                 })
             }
             else {
-                console.log("signIn from tothenew ID")
+                console.log("signIn from tothenew ID");
                 return done(null);
             }
         }
     ))
-}
+};
 
-passport.serializeUser( function (user, done) {
+passport.serializeUser((user, done) => {
     done(null, user.id);
-})
+});
 
-passport.deserializeUser( function (id, done) {
-    User.findOne({google_id:id}, function (err, user) {
+passport.deserializeUser((id, done) => {
+    User.findOne({google_id:id}, (err, user) => {
         done(null, user);
     })
-})
+});

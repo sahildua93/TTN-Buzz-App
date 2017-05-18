@@ -1,15 +1,12 @@
-.main-buzz{
-    border: 1px solid #dddddd;
-    width: 50%;
-    height: auto;
-    display: inline-block;
-    background-color: white;
-    margin:50px;
-    /*margin-right:50px;*/
-}
-
-
-
+/*.main-buzz{*/
+    /*border: 1px solid #dddddd;*/
+    /*!*width: 50%;*!*/
+    /*!*height: auto;*!*/
+    /*!*display: inline-block;*!*/
+    /*background-color: white;*/
+    /*!*margin:50px;*!*/
+    /*!*margin-right:50px;*!*/
+/*}*/
 
 textarea {
     width: 95%;
@@ -21,6 +18,7 @@ textarea {
 
 .header{
     margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .header select {
@@ -48,11 +46,9 @@ textarea {
 }
 
 .post {
-    float: left;
     background-color: #ffffff;
-    width: 50%;
-    margin-left: 50px;
     margin-bottom: 15px;
+    border-radius: 20px;
 }
 
 .postheader {
@@ -68,7 +64,6 @@ textarea {
 
 .postby{
     float: left;
-    width: 202px;
     margin-left: 10px;
 }
 
@@ -78,24 +73,29 @@ textarea {
 
 .actorlost {
     float: right;
-    background-color: #000;
-    color: #fff;
     margin: 10px;
     padding: 2px;
+    color: white;
+    border-radius: 15px;
+    background-color: #337ab7;
+    font-weight: bold;
+    font-size: larger;
+    text-transform: uppercase;
 
 }
 
 .image {
-    padding-top: 15px;
-    padding-left: 10px;
-    overflow: hidden;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
+    display: inline-block;
+    border-radius: 2%;
 }
 
 .image img {
-    width: 250px;
+    width: 95%;
     height: 250px;
     float: left;
+    border-radius: 2%;
 }
 
 .image p {
@@ -103,6 +103,16 @@ textarea {
     float: left;
     width: 150px;
     margin-right: 2px;
+}
+
+.comment {
+    padding-top: 10px;
+    padding-left: 15px;
+    font-size: large;
+    font-style: italic;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: capitalize;
 }
 
 .camera-upload {
@@ -130,7 +140,36 @@ textarea {
 }
 
 .image_upload input[type="file"] {
-    /*margin-top: -28px;*/
-    /*width: 50px;*/
-    /*opacity: 0;*/
+    margin-top: -28px;
+    width: 50px;
+    opacity: 0;
 }
+
+.like-dislike-section {
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.glyphicon-uploads {
+    font-size: x-large;
+    margin-right: 10px;
+}
+
+.like-section {
+    display: inline-block;
+}
+
+.dislike-section {
+    display: inline-block;
+}
+
+.comment-section {
+    display: inline-block;
+}
+/*.populate-buzz{*/
+    /*border: 1px solid #dddddd;*/
+    /*height: auto;*/
+    /*overflow: hidden;*/
+/*}*/
+

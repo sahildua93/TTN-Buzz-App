@@ -5,4 +5,4 @@
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger'
 
-export const middlewares = [logger, thunkMiddleware]
+export const middlewares = [thunkMiddleware, logger ]

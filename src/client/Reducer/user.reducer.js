@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                user
+                    user
             }
         }
         case FETCH_USER_FAILURE : {

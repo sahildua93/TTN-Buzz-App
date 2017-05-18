@@ -16,12 +16,6 @@
     font-size: 15px;
 }
 
-form {
-    border: 3px solid #f1f1f1;
-    border-radius:4px;
-}
-
-
 /* Set a style for all buttons */
 .button {
     background-color: rgba(200, 70, 67, 0.75);

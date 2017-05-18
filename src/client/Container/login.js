@@ -2,7 +2,7 @@
  * Created by sahil-dua on 3/5/17.
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../../assets/CSS/login.css'
 
 export default class Login extends Component {
@@ -18,9 +18,7 @@ export default class Login extends Component {
                             <img src={require('../../assets/images/img_avatar2.png')} alt="Avatar" className="avatar"/>
                         </div>
                         <div className="container">
-
                                 <button className="button fa fa-google-plus" type="submit">Login</button>
-
                         </div>
                     </form>
                 </div>
