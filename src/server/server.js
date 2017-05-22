@@ -8,6 +8,7 @@ const expressSession = require('express-session');
 const webpackConfig = require('../../webpack.config');
 const router = require('./Routes/route');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 const app = express();
 const compiler = webpack(webpackConfig);
 require('./Config/datasource');
@@ -25,6 +26,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(express.static('./src/server/tmp/'));
 app.use(bodyParser(),
+    cookieParser(),
     expressSession({secret: '123456789'}),
     passport.initialize(),
     passport.session());

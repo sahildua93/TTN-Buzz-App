@@ -9,11 +9,13 @@ const GoogleStrategy = require('../Passport/google.auth');
 module.exports = (app) => {
 
     GoogleStrategy.googleAuth();
-
+    app.get('/', (req, res) => {
+        res.redirect('/login');
+    });
     app.get('/api/login',passport.authenticate('google', {scope: ["profile", "email"]}));
     app.get('/oauth2callback', passport.authenticate('google', {
         successRedirect: '/profile',
-        failureRedirect: '/'
+        failureRedirect: '/login'
     }));
 
     app.use('/Users',require('../API/User/index'));
@@ -25,6 +27,7 @@ module.exports = (app) => {
     });
 
     app.get('/api/logout', (req, res) =>{
+        res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
         req.logout();
         res.redirect('/');
     });

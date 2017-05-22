@@ -18,7 +18,8 @@ exports.createBuzz = (req, res) => {
 };
 
 exports.fetchBuzz = (req, res) => {
-    buzzService.fetchBuzz((err, buzz) => {
+    let skip =  req.params;
+    buzzService.fetchBuzz(skip, (err, buzz) => {
         if(err){
             res.send(err);
         }
@@ -30,6 +31,9 @@ exports.fetchBuzz = (req, res) => {
 
 exports.likeDislike = (req, res) => {
     let userDetails = req.body;
+    Object.assign(userDetails, {
+        user_id: req.user._id,
+    });
     buzzService.likeDislike(userDetails, (err, userData) => {
         if(err){
             res.send(err);

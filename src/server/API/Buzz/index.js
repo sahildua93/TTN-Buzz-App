@@ -18,7 +18,7 @@ const uploadPath = multer({storage: storage});
 
 buzz.use(uploadPath.single('file'));
 buzz.post('/create-buzz', buzzController.createBuzz);
-buzz.get('/fetch-buzz', buzzController.fetchBuzz);
+buzz.get('/fetch-buzz/:skip', buzzController.fetchBuzz);
 buzz.put('/like-dislike', buzzController.likeDislike);
 
 module.exports = buzz;

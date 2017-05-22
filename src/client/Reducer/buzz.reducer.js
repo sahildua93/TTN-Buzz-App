@@ -13,9 +13,13 @@ import {
     LIKE_DISLIKE_FAILURE,
 
 }from '../Config/constant';
+// import _remove from 'lodash/remove';
+let _ = require('lodash');
+// import _findIndex from 'lodash/findIndex';
 
 const initialState = {
     buzz: [],
+    skip: 0,
     creating: false,
     likes_updated: false,
     created: false,
@@ -51,12 +55,14 @@ export default function (state = initialState, action) {
             }
         }
         case FETCH_BUZZ_SUCCESS : {
-            const buzz = action.data;
+            const buzz = state.buzz.concat(action.data);
+            let incSkip = state.skip+5;
             return {
                 ...state,
                 buzz,
                 creating: false,
                 created: true,
+                skip: incSkip,
             }
         }
         case FETCH_BUZZ_FAILURE : {
@@ -72,19 +78,27 @@ export default function (state = initialState, action) {
             }
         }
         case LIKE_DISLIKE_SUCCESS : {
-            const Buzz = JSON.stringify(state.buzz);
-            const newBuzz = JSON.parse(Buzz);
-            const currentBuzz = newBuzz.find((buzz) => (buzz._id === action.data.buzz_id));
-           let newObj = currentBuzz.likes_dislikes.find((items) => (items.user_id === action.data.user_id));
-           newObj.option = action.data.option;
-            console.log('updatedcurrent buzz-------zzz',currentBuzz);
-            let _updatedState = {
+          let Buzz = JSON.stringify(state.buzz);
+          let allBuzz = JSON.parse(Buzz);
+          let changedvalue = action.data;
+          let like_dislike_buzz = allBuzz.find((items) => (items._id === changedvalue.buzz_id));
+          let indexOfBuzz = _.findIndex(allBuzz, like_dislike_buzz);
+          if(changedvalue.category === 'like'){
+              _.remove(like_dislike_buzz.dislike, (o) =>( o.user_id ===changedvalue.user_id ));
+              _.remove(like_dislike_buzz.likes, (o) =>( o.user_id ===changedvalue.user_id ));
+              like_dislike_buzz.likes.push(changedvalue);
+              allBuzz.splice(indexOfBuzz,1,like_dislike_buzz);
+          }
+          else if(changedvalue.category === 'dislike') {
+              _.remove(like_dislike_buzz.likes, (o) =>( o.user_id ===changedvalue.user_id ));
+              _.remove(like_dislike_buzz.dislike, (o) =>( o.user_id ===changedvalue.user_id ));
+              like_dislike_buzz.dislike.push(changedvalue);
+              allBuzz.splice(indexOfBuzz,1,like_dislike_buzz);
+          }
+            return {
                 ...state,
-                buzz: newBuzz,
-                likes_updated: true,
+                buzz: allBuzz,
             };
-            console.log('Updated state is ', _updatedState);
-            return _updatedState;
         }
         case LIKE_DISLIKE_FAILURE : {
             return {

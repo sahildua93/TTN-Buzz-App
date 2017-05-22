@@ -22,7 +22,8 @@ const buzzSchema = new mongoose.Schema(
         user_picture: {
             type: String
         },
-        likes_dislikes: [],
+        likes: [],
+        dislike: [],
 
     }, {versionKey : false, timestamps : true}
 );

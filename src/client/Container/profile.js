@@ -3,6 +3,7 @@ import Header from './header';
 import SideBar from './sidebar';
 import CreateBuzz from './createBuzz';
 import PopulateBuzz from './populateBuzz';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../../assets/CSS/header.css'
 import '../../assets/CSS/buzz.css'
 import '../../assets/CSS/profile.css'

@@ -17,7 +17,7 @@ class SideBar extends Component {
                     <img src={this.props.user.image_url} className="img-responsive img-circle nav-image"/>
                     <center><b>{this.props.user.username}</b></center>
                     <center><b>{this.props.user.role}</b></center>
-                    <a href="#">Activity</a>
+                    {/*<li><Link to={'/lostfound'} >Lost and Found</Link></li>*/}
                     <a href="#">Buzz</a>
                     <a href="#">Complaints</a>
                 </div>

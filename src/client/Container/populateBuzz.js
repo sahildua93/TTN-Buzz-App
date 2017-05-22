@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { fetchBuzz, likeDislike, commentCreate, fetchComments } from '../Action/async.actions'
 import Likes from '../Components/likes';
 import Dislikes from '../Components/dislike';
-import Comments from '../Components/comments'
+import Comments from '../Components/comments';
+import '../../assets/CSS/model.css';
 import '../../assets/CSS/buzz.css';
 
 class PopulateBuzz extends Component {
@@ -13,21 +14,23 @@ class PopulateBuzz extends Component {
 
         this.state = {
             commentBox: '',
-        }
+        };
     }
 
     componentDidMount() {
+        window.addEventListener("scroll", this.handleScroll);
         this.props.fetchBuzz();
         this.props.fetchComments();
     };
 
-    incrementLikeDislike = (option, key) => {
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll);
+    };
+
+    incrementLikeDislike = (category, key) => {
         let userDetails = {
-            user_id: this.props.user._id,
             buzz_id: key,
-            username: this.props.user.username,
-            image: this.props.user.image_url,
-            option: option,
+            category: category,
         };
         this.props.likeDislike(userDetails);
     };
@@ -42,6 +45,12 @@ class PopulateBuzz extends Component {
             comment: this.state.commentBox,
         };
         this.props.submitComment(commentDetails);
+    };
+
+    handleScroll = () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            this.props.fetchBuzz();
+        }
     };
 
     render() {
@@ -59,7 +68,6 @@ class PopulateBuzz extends Component {
                     </div>
                 </div>
                 <div>
-                    <hr/>
                     <div className="comment">
                         <div>
                             {items.comment}
@@ -77,33 +85,36 @@ class PopulateBuzz extends Component {
                     <div className="like-section">
                         <a className="glyphicon glyphicon-thumbs-up glyphicon-uploads"
                            onClick={() => this.incrementLikeDislike('like', items._id)}>
-                            <Likes buzzDetails={this.props.buzz}
-                                   buzzId={items._id}/>
                         </a>
+                        <Likes buzzDetails={this.props.buzz}
+                               buzzId={items._id}/>
                     </div>
                     <div className="dislike-section">
                         <a className="glyphicon glyphicon-thumbs-down glyphicon-uploads"
                            onClick={() => this.incrementLikeDislike('dislike', items._id)}>
-                            <Dislikes buzzDetails={this.props.buzz}
-                                      buzzId={items._id}/>
                         </a>
-                    </div>
-                    <div className="comment-section">
-                        <a className="glyphicon glyphicon-comment glyphicon-uploads"> </a>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                            <textarea rows="4" cols="50" className="comment-box" name="commentBox" placeholder="Enter comments......"
-                                      onChange={this.changeHandler}>
-                            </textarea>
-                        <input type="submit" value="comment" className="comment-button" onClick={() => this.submitBuzzComment(items._id)}/>
+                        <Dislikes buzzDetails={this.props.buzz}
+                                  buzzId={items._id}/>
                     </div>
                 </div>
-                <hr/>
-                <div className="row comment-box">
-                    <Comments commentDetails={this.props.comment}
-                              buzzId={items._id}/>
+                <div>
+                    <div>
+                            <input type="text" className="input-comment-box" placeholder="Enter comments..."
+                                   onChange={this.changeHandler}>
+                            </input>
+                        <span>
+                            <button className="comment-button" type="button" onClick={() => this.submitBuzzComment(items._id)}>
+                                Comment
+                            </button>
+                        </span>
+                    </div>
+                    <hr/>
+                </div>
+                <div className="comment-box">
+                    <div>
+                        <Comments commentDetails={this.props.comment}
+                                  buzzId={items._id}/>
+                    </div>
                 </div>
             </div>
         ));

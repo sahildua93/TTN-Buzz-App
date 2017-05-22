@@ -63,9 +63,11 @@ export const buzzCreate = (newBuzz) => {
     }
 };
 
-export const fetchBuzz = () => (dispatch) => {
+export const fetchBuzz = () => (dispatch, getStore) => {
+    let store = getStore();
+    let skip = store.buzz.skip;
     dispatch(fetchBuzzStarted());
-    fetch('http://localhost:3004/Buzz/fetch-buzz',
+    fetch(`http://localhost:3004/Buzz/fetch-buzz/${skip}`,
         {
             method: 'get',
             credentials: "include"

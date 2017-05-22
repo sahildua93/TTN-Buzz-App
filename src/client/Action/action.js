@@ -49,7 +49,8 @@ export  function createBuzzFailure(err) {
 }
 
 export function fetchBuzzStarted() {
-    return({ type: FETCH_BUZZ_STARTED })
+    console.log('actions ---------page');
+    return({ type: FETCH_BUZZ_STARTED } )
 }
 
 export function fetchBuzzSuccess(data) {

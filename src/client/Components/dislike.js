@@ -3,13 +3,18 @@
  */
 
 import React from 'react';
+import '../../assets/CSS/buzz.css';
+import '../../assets/CSS/model.css';
+import Model from './dislikeModel'
+
 export default ({ buzzDetails, buzzId }) => {
-    let filteredArray = buzzDetails.find((item) => item._id === buzzId);
-    let count_dislike = filteredArray.likes_dislikes.filter((item) => item.option === 'dislike').length;
+    let filteredList = buzzDetails.find((item) => item._id === buzzId);
+    let count_dislike = filteredList.dislike.length;
     return(
-        <span>
-            {count_dislike}
-        </span>
+        <div className="lke-dslke-count" data-toggle="modal" data-target="#dislikeModal">
+            <span>{count_dislike}</span>
+            <Model option = "dislike"/>
+        </div>
     )
 }
 
