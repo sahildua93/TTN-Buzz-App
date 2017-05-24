@@ -13,9 +13,7 @@ import {
     LIKE_DISLIKE_FAILURE,
 
 }from '../Config/constant';
-// import _remove from 'lodash/remove';
-let _ = require('lodash');
-// import _findIndex from 'lodash/findIndex';
+    let _ = require('lodash');
 
 const initialState = {
     buzz: [],
@@ -72,7 +70,6 @@ export default function (state = initialState, action) {
             }
         }
         case LIKE_DISLIKE_STARTED : {
-            console.log('state statrted ----ZZZZZZZ', state);
             return {
                 ...state,
             }

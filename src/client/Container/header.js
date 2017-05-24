@@ -16,10 +16,10 @@ export default class Header extends Component{
                     </form>
                 </div>
 
-                <img src={require('../../assets/images/road.jpg')} className="img-responsive background-image-profile" alt="Highway Of london" />
+                <img src={`/${require('../../assets/images/road.jpg')}`} className="img-responsive background-image-profile" alt="Highway Of london" />
 
                 <div className="logo-image">
-                    <img src={require('../../assets/images/logo.jpg')} className="img-responsive" alt="Logo"/>
+                    <img src={`/${require('../../assets/images/logo.jpg')}`} className="img-responsive" alt="Logo"/>
                 </div>
             </div>
 

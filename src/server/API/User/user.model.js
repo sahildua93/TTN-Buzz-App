@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 require('../../Config/datasource');
 
-const roles = ['User', 'Developer'];
+const roles = ['User', 'Admin'];
 const userSchema = new mongoose.Schema(
     {
         google_id: {

@@ -21,8 +21,10 @@ import {
     FETCH_COMMENTS_STARTED,
     FETCH_COMMENTS_SUCCESS,
     FETCH_COMMENTS_FAILURE,
+    CREATE_COMPLAINT_STARTED,
+    CREATE_COMPLAINT_SUCCESS,
+    CREATE_COMPLAINT_FAILURE,
 } from '../Config/constant';
-
 
 export function fetchUserStarted() {
     return({ type: FETCH_USER_STARTED});
@@ -94,4 +96,16 @@ export function fetchCommentsSuccess(data) {
 
 export  function fetchCommentsFailure(err) {
     return({ type: FETCH_COMMENTS_FAILURE, err })
+}
+
+export function createComplaintStarted() {
+    return({ type: CREATE_COMPLAINT_STARTED})
+}
+
+export  function createComplaintSuccess(data) {
+    return({ type: CREATE_COMPLAINT_SUCCESS, data })
+}
+
+export function createComplaintFailure(err) {
+    return({ type: CREATE_COMPLAINT_FAILURE, err })
 }

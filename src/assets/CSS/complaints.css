@@ -1,0 +1,26 @@
+.complaint-box{
+    background-color: rgba(255, 47, 0, 0.28);
+    margin: 0;
+    border-radius: 20px;
+    padding: 30px;
+}
+.complaint-form{
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    background: aliceblue;
+}
+
+.complain-heading{
+    text-align: center;
+    color:#000080;
+    margin: 0;
+}
+label{
+    color:#000080;
+}
+.complaint-text-area{
+    margin:0;
+}
+.complaint-btn{
+    margin-left: 75%;
+}

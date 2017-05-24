@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Header from './header';
 import SideBar from './sidebar';
 import CreateBuzz from './createBuzz';
+import IsAuthenticated from './isAuthenticated';
+import { connect } from 'react-redux';
 import PopulateBuzz from './populateBuzz';
+import LostAndFound from './lostFound';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../../assets/CSS/header.css'
 import '../../assets/CSS/buzz.css'
@@ -23,7 +26,8 @@ export default class Profile extends Component {
                             <CreateBuzz/>
                         </div>
                         <div className="populate-buzz">
-                            <PopulateBuzz/>
+                            <Route path="/profile/buzz" component={ PopulateBuzz } />
+                            <Route path="/profile/lostfound" component={ LostAndFound }/>
                         </div>
                     </div>
                 </div>
@@ -31,3 +35,8 @@ export default class Profile extends Component {
         )
     }
 }
+//
+// const ProfileContainer = connect()(IsAuthenticated(Profile));
+// export default ProfileContainer;
+
+

@@ -12,7 +12,7 @@ export default class App extends Component{
             <Router>
                 <div>
                     <Route exact path='/login' component={Login}/>
-                    <Route path='/profile' component={Profile}/>
+                    <Route path='/profile' component={Profile} />
                 </div>
             </Router>
         )

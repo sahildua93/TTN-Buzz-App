@@ -25,9 +25,10 @@ app.use(webpackDevMiddleware(compiler, {
     historyApiFallback: true,
 }));
 app.use(express.static('./src/server/tmp/'));
+
 app.use(bodyParser(),
     cookieParser(),
-    expressSession({secret: '123456789'}),
+    expressSession({secret: '123456789', unset: 'destroy'}),
     passport.initialize(),
     passport.session());
 

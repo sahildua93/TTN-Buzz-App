@@ -8,8 +8,8 @@ import {
 }from '../Config/constant';
 
 const initialState = {
-    loading : false,
-    user: {},
+    loading : 'NOT_STARTED',
+    user: '',
     error: null,
 };
 
@@ -18,21 +18,24 @@ export default function (state = initialState, action) {
         case FETCH_USER_STARTED : {
             return {
                 ...state,
-                loading: true,
+                loading: 'STARTED',
             }
         }
         case FETCH_USER_SUCCESS : {
             const user = action.data;
+
             return {
                 ...state,
-                loading: false,
-                    user
+                loading: 'COMPLETE',
+                user,
             }
         }
         case FETCH_USER_FAILURE : {
             return {
                     ...state,
+                    user,
                     error: action.error,
+                    loading: 'COMPLETE'
             }
         }
         default : {

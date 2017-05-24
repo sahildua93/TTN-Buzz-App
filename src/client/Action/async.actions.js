@@ -21,6 +21,9 @@ import {
     fetchCommentsStarted,
     fetchCommentsSuccess,
     fetchCommentsFailure,
+    createComplaintStarted,
+    createComplaintSuccess,
+    createComplaintFailure,
 } from './action'
 import fetch from 'isomorphic-fetch';
 
@@ -141,5 +144,28 @@ export const fetchComments = () => (dispatch) => {
         .catch(error => {
             dispatch(fetchCommentsFailure(error));
         })
+};
+
+export const complaintCreate = (newComplaint) => {
+    return (dispatch) => {
+        dispatch(createComplaintStarted());
+        fetch('http://localhost:3004/Complaint/create-complaint',
+            {
+                method: 'post',
+                credentials: "include",
+                body: newComplaint,
+            })
+            .then(response => {
+                console.log("response>>>>>>", response);
+                return response.json()
+            })
+            .then(data => {
+                console.log('createsuccess------------------', data);
+                dispatch(createComplaintSuccess(data))
+            })
+            .catch(error => {
+                dispatch(createComplaintFailure(error));
+            })
+    }
 };
 

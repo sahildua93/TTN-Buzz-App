@@ -36,7 +36,8 @@ class PopulateBuzz extends Component {
     };
 
     changeHandler = (event) => {
-        this.setState({[event.target.name]: event.target.value});
+        this.setState({[event.target.name]: event.target.value}, function () {
+        });
     };
 
     submitBuzzComment = (key) => {
@@ -99,7 +100,7 @@ class PopulateBuzz extends Component {
                 </div>
                 <div>
                     <div>
-                            <input type="text" className="input-comment-box" placeholder="Enter comments..."
+                            <input type="text" name="commentBox" className="input-comment-box" placeholder="Enter comments..."
                                    onChange={this.changeHandler}>
                             </input>
                         <span>

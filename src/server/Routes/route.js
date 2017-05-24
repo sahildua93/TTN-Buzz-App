@@ -9,6 +9,7 @@ const GoogleStrategy = require('../Passport/google.auth');
 module.exports = (app) => {
 
     GoogleStrategy.googleAuth();
+
     app.get('/', (req, res) => {
         res.redirect('/login');
     });
@@ -21,15 +22,28 @@ module.exports = (app) => {
     app.use('/Users',require('../API/User/index'));
     app.use('/Buzz',require('../API/Buzz/index'));
     app.use('/Comment',require('../API/Comments/index'));
+    app.use('/Complaint',require('../API/Complaint/index'));
 
     app.get('/api/profile', (req, res) => {
         res.redirect('/profile');
     });
 
     app.get('/api/logout', (req, res) =>{
-        res.cookie('connect.sid', '', {expires: new Date(1), path: '/' });
+       /* console.log('jasdadskjhaksjdh');
+        res.cookie('connect.sid','');
         req.logout();
-        res.redirect('/');
+        res.redirect('/');*/
+
+       req.session.destroy((err)=>{
+           if(err){
+               console.log('Error while destroyinh session -->', err);
+           }
+               console.log('Session is -->', req.session);
+           res.cookie('userId', undefined);
+           res.cookie('connect.sid', undefined);
+           // req.logOut();
+           res.redirect('/');
+       })
     });
     // function isLoggedin(req, res, next) {
     //     if (req.url == '/api/profile') {
