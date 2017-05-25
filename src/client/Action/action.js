@@ -24,6 +24,9 @@ import {
     CREATE_COMPLAINT_STARTED,
     CREATE_COMPLAINT_SUCCESS,
     CREATE_COMPLAINT_FAILURE,
+    FETCH_COMPLAINT_STARTED,
+    FETCH_COMPLAINT_SUCCESS,
+    FETCH_COMPLAINT_FAILURE,
 } from '../Config/constant';
 
 export function fetchUserStarted() {
@@ -51,7 +54,6 @@ export  function createBuzzFailure(err) {
 }
 
 export function fetchBuzzStarted() {
-    console.log('actions ---------page');
     return({ type: FETCH_BUZZ_STARTED } )
 }
 
@@ -108,4 +110,15 @@ export  function createComplaintSuccess(data) {
 
 export function createComplaintFailure(err) {
     return({ type: CREATE_COMPLAINT_FAILURE, err })
+}
+export function fetchComplaintStarted() {
+    return({ type: FETCH_COMPLAINT_STARTED })
+}
+
+export function fetchComplaintSuccess(data) {
+    return({ type: FETCH_COMPLAINT_SUCCESS, data })
+}
+
+export  function fetchComplaintFailure(err) {
+    return({ type: FETCH_COMPLAINT_FAILURE, err })
 }

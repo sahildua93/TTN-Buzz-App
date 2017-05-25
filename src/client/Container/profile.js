@@ -5,7 +5,8 @@ import CreateBuzz from './createBuzz';
 import IsAuthenticated from './isAuthenticated';
 import { connect } from 'react-redux';
 import PopulateBuzz from './populateBuzz';
-import LostAndFound from './lostFound';
+import Complaints from './complaintBox';
+import TableExampleSimple from './listOfComplaints';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../../assets/CSS/header.css'
 import '../../assets/CSS/buzz.css'
@@ -27,7 +28,8 @@ export default class Profile extends Component {
                         </div>
                         <div className="populate-buzz">
                             <Route path="/profile/buzz" component={ PopulateBuzz } />
-                            <Route path="/profile/lostfound" component={ LostAndFound }/>
+                            <Route path="/profile/complaints" component={ Complaints }/>
+                            <Route path="/profile/all-complaints" component={ TableExampleSimple }/>
                         </div>
                     </div>
                 </div>

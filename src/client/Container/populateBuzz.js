@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchBuzz, likeDislike, commentCreate, fetchComments } from '../Action/async.actions'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {fetchBuzz, likeDislike, fetchComments} from '../Action/async.actions'
 import Likes from '../Components/likes';
 import Dislikes from '../Components/dislike';
-import Comments from '../Components/comments';
+import Comments from '../Container/comments';
+import CommentsList from '../Components/commentsList';
+import Toggle from 'material-ui/Toggle';
 import '../../assets/CSS/model.css';
 import '../../assets/CSS/buzz.css';
 
@@ -11,10 +13,6 @@ class PopulateBuzz extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            commentBox: '',
-        };
     }
 
     componentDidMount() {
@@ -35,19 +33,6 @@ class PopulateBuzz extends Component {
         this.props.likeDislike(userDetails);
     };
 
-    changeHandler = (event) => {
-        this.setState({[event.target.name]: event.target.value}, function () {
-        });
-    };
-
-    submitBuzzComment = (key) => {
-        const commentDetails = {
-            buzz_id: key,
-            comment: this.state.commentBox,
-        };
-        this.props.submitComment(commentDetails);
-    };
-
     handleScroll = () => {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             this.props.fetchBuzz();
@@ -60,10 +45,6 @@ class PopulateBuzz extends Component {
             <div className="post" key={items._id}>
                 <div className="postheader">
                     <img src={items.user_picture || require('../../assets/images/img_avatar2.png')}/>
-                    <div className="postby">
-                        {/*<span className="by">Sahil dua Create a New Buzz</span>*/}
-                        {/*<span className="time">{items.createdAt}</span>*/}
-                    </div>
                     <div className="actorlost">
                         { items.category }
                     </div>
@@ -98,23 +79,11 @@ class PopulateBuzz extends Component {
                                   buzzId={items._id}/>
                     </div>
                 </div>
-                <div>
-                    <div>
-                            <input type="text" name="commentBox" className="input-comment-box" placeholder="Enter comments..."
-                                   onChange={this.changeHandler}>
-                            </input>
-                        <span>
-                            <button className="comment-button" type="button" onClick={() => this.submitBuzzComment(items._id)}>
-                                Comment
-                            </button>
-                        </span>
-                    </div>
-                    <hr/>
-                </div>
+                <Comments buzzId={items._id}/>
                 <div className="comment-box">
                     <div>
-                        <Comments commentDetails={this.props.comment}
-                                  buzzId={items._id}/>
+                        <CommentsList commentDetails={this.props.comment}
+                                      buzzId={items._id}/>
                     </div>
                 </div>
             </div>
@@ -141,9 +110,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchBuzz: () => dispatch(fetchBuzz()),
     likeDislike: (userDetails) => dispatch(likeDislike(userDetails)),
-    submitComment: (commentDetails) => dispatch(commentCreate(commentDetails)),
     fetchComments: () => dispatch(fetchComments())
-
 });
 
 const PopulateBuzzContainer = connect(mapStateToProps, mapDispatchToProps)(PopulateBuzz);

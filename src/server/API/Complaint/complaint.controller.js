@@ -16,3 +16,15 @@ exports.createComplaint = (req, res) => {
         }
     });
 };
+
+exports.fetchComplaint = (req, res) => {
+    let userId =  req.params.userId;
+    complaintService.fetchComplaint(userId, (err, complaint) => {
+        if(err){
+            res.send(err);
+        }
+        else{
+            res.send(complaint);
+        }
+    })
+};

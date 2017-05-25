@@ -45,12 +45,10 @@ exports.googleAuth = () => {
 };
 
 passport.serializeUser((user, done) => {
-    console.log(user,'-------------------serialize');
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    console.log(id,'-------------------deserailize');
     User.findOne({google_id:id}, (err, user) => {
         done(null, user);
     })

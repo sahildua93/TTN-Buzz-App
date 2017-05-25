@@ -17,7 +17,7 @@ exports.createComment = (commentData, callback) => {
 };
 
 exports.fetchComments = (callback) => {
-    Comment.find({}).sort({createdAt:-1}).exec((err,allComments) => {
+    Comment.find({}).exec((err,allComments) => {
         if(err){
             console.log('Error while populating comments', err);
         }

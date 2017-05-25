@@ -17,9 +17,10 @@ class SideBar extends Component {
                     <img src={this.props.user.image_url} className="img-responsive img-circle nav-image"/>
                     <center><b>{this.props.user.username}</b></center>
                     <center><b>{this.props.user.role}</b></center>
-                    <Link to='/profile/lostfound' >Lost and Found</Link>
+                    <a href="#">Lost and Found</a>
                     <Link to='/profile/buzz' >Buzz</Link>
-                    <a href="#">Complaints</a>
+                    <Link to='/profile/complaints' >Complaints</Link>
+                    <Link to='/profile/all-complaints' >All complaints</Link>
                 </div>
             </div>
         )

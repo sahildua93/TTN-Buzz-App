@@ -1,11 +1,12 @@
 
 .main-profile {
-    /*background-color: rgba(192, 188, 180, 0.7);*/
+    background-color: rgba(88, 90, 83, 0.16);
     border: 5px solid #f1f1f1;
     height: auto;
     /*background-size: cover;*/
-    background-image: url("http://slodive.com/wp-content/uploads/2012/09/plain-backgrounds/grungy-greenish-background.jpg");
+    /*background-image: url("http://www.bestpsdfreebies.com/wp-content/uploads/2013/11/5_free_seamless_icon_patterns.jpg");*/
     background-repeat: repeat;
+    min-height: 104vh;
 
 }
 .buzz {

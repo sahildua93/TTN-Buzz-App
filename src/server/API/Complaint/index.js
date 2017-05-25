@@ -18,5 +18,5 @@ const uploadPath = multer({storage: storage});
 
 complaint.use(uploadPath.single('file'));
 complaint.post('/create-complaint', complaintController.createComplaint);
-
+complaint.get('/fetch-complaint/:userId', complaintController.fetchComplaint);
 module.exports = complaint;
