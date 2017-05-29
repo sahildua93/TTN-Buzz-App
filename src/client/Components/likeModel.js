@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/CSS/buzz.css';
-export default ({ option, buzzDetails, buzzId  }) => {
+export default ({ option}) => {
     return(
         <div >
             <div className="modal fade" data-backdrop="false" id="likeModal" role="dialog">

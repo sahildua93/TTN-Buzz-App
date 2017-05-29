@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CircularProgress from 'material-ui/CircularProgress';
-import { fetchBuzz, likeDislike, fetchComments } from '../Action/async.actions';
+import dateTime from '../Config/dateTimeFormat';
+import { fetchLostAndFoundData, likeDislike, fetchComments } from '../Action/async.actions';
 import Likes from '../Components/likes';
 import Dislikes from '../Components/dislike';
 import Comments from '../Container/comments';
 import CommentsList from '../Components/commentsList';
-import dateTime from '../Config/dateTimeFormat';
 import '../../assets/CSS/model.css';
 import '../../assets/CSS/buzz.css';
 
-class PopulateBuzz extends Component {
+class LostFound extends Component {
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-    this.props.fetchBuzz();
+    this.props.fetchLostAndFound();
     this.props.fetchComments();
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
   };
 
   incrementLikeDislike = (category, key) => {
@@ -34,15 +28,9 @@ class PopulateBuzz extends Component {
     this.props.likeDislike(userDetails);
   };
 
-  handleScroll = () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      this.props.fetchBuzz();
-    }
-  };
-
-  render() {
-    const buzzDetails = this.props.buzz;
-    const renderBuzz = buzzDetails.map((items) => (
+  render(){
+    const lostAndFoundDetails = this.props.lostAndFound;
+    const renderBuzz = lostAndFoundDetails.map((items) => (
       <div className="post" key={items._id}>
         <div className="postheader">
           <img src={items.user_picture || require('../../assets/images/img_avatar2.png')}/>
@@ -68,22 +56,22 @@ class PopulateBuzz extends Component {
             }
           </div>
         </div>
-        <div className="like-dislike-section">
-          <div className="like-section">
-            <a className="glyphicon glyphicon-thumbs-up glyphicon-uploads"
-               onClick={() => this.incrementLikeDislike('like', items._id)}>
-            </a>
-            <Likes buzzDetails={this.props.buzz}
-                   buzzId={items._id}/>
-          </div>
-          <div className="dislike-section">
-            <a className="glyphicon glyphicon-thumbs-down glyphicon-uploads"
-               onClick={() => this.incrementLikeDislike('dislike', items._id)}>
-            </a>
-            <Dislikes buzzDetails={this.props.buzz}
-                      buzzId={items._id}/>
-          </div>
-        </div>
+        {/*<div className="like-dislike-section">*/}
+          {/*<div className="like-section">*/}
+            {/*<a className="glyphicon glyphicon-thumbs-up glyphicon-uploads"*/}
+               {/*onClick={() => this.incrementLikeDislike('like', items._id)}>*/}
+            {/*</a>*/}
+            {/*<Likes buzzDetails={this.props.lostAndFound}*/}
+                   {/*buzzId={items._id}/>*/}
+          {/*</div>*/}
+          {/*<div className="dislike-section">*/}
+            {/*<a className="glyphicon glyphicon-thumbs-down glyphicon-uploads"*/}
+               {/*onClick={() => this.incrementLikeDislike('dislike', items._id)}>*/}
+            {/*</a>*/}
+            {/*<Dislikes buzzDetails={this.props.lostAndFound}*/}
+                      {/*buzzId={items._id}/>*/}
+          {/*</div>*/}
+        {/*</div>*/}
         <Comments buzzId={items._id}/>
         <div className="comment-box">
           <div>
@@ -93,35 +81,25 @@ class PopulateBuzz extends Component {
         </div>
       </div>
     ));
-    return (
+    return(
       <div>
-        <div>
-          {renderBuzz}
-        </div>
-        <div>
-          {
-            (this.props.allBuzzData.creating ) ?
-              <div className="loadingScroller"><CircularProgress size={80} thickness={5}/></div> :
-              <div></div>
-          }
-        </div>
+        {renderBuzz}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
+  lostAndFound: state.lostAndFound.lostAndFoundData,
   buzz: state.buzz.buzz,
-  allBuzzData: state.buzz,
-  user: state.user.user,
   comment: state.comment.comment,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchBuzz: () => dispatch(fetchBuzz()),
+  fetchLostAndFound: () => dispatch(fetchLostAndFoundData()),
   likeDislike: (userDetails) => dispatch(likeDislike(userDetails)),
   fetchComments: () => dispatch(fetchComments())
 });
 
-const PopulateBuzzContainer = connect(mapStateToProps, mapDispatchToProps)(PopulateBuzz);
-export default PopulateBuzzContainer;
+const LostFoundContainer = connect(mapStateToProps, mapDispatchToProps)(LostFound);
+export default LostFoundContainer;

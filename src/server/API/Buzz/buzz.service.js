@@ -72,6 +72,7 @@ exports.fetchBuzz = (skipLimit,callback) => {
 // })
 
 exports.likeDislike = (userDetails, callback) => {
+  console.log('userdetails---',userDetails);
     const user = {
         'buzz_id': userDetails.buzz_id,
         'user_id': userDetails.user_id,
@@ -104,36 +105,14 @@ exports.likeDislike = (userDetails, callback) => {
         });
 };
 
-
-// taking 2 arrays
-
-
-// const user = {
-//     'user_id': userDetails.user_id,
-//     'category': userDetails.category,
-// };
-// const itemToPush = {};
-// const itemToPull = {};
-//
-// if (userDetails.category === 'like') {
-//     itemToPush['likes'] = user;
-//     itemToPull['dislike'] = { 'user_id': user.user_id }
-// } else {
-//     itemToPush['dislike'] = user;
-//     itemToPull['likes'] = { 'user_id': user.user_id }
-// }
-//
-// Buzz.update({'_id': userDetails.buzz_id},
-//     {
-//         $addToSet: itemToPush,
-//         $pull: itemToPull,
-//     }, (err, updatedData) => {
-//     if(err) {
-//         console.log('error while updating XX');
-//         callback(err);
-//     }
-//     else{
-//         console.log('updated successfully !!', updatedData);
-//         callback(user);
-//     }
-//     });
+exports.fetchLostAndFound = (callback) => {
+  Buzz.find({category: 'Lost n found'}).sort({createdAt:-1}).exec((err, lostAndFoundData) => {
+    if(err) {
+      console.log('Error while populating Lost n found buzz', err);
+    }
+    else{
+      console.log('All Lost n found buzz populated !!!');
+      callback(null,lostAndFoundData);
+    }
+  })
+};

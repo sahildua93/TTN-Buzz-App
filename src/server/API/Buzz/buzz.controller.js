@@ -4,6 +4,7 @@ exports.createBuzz = (req, res) => {
     const buzzData = req.body;
     Object.assign(buzzData, {
         creator : req.user._id,
+        username : req.user.username,
         user_picture:req.user.image_url,
         image : req.file ? req.file.filename : '' ,
     });
@@ -31,6 +32,7 @@ exports.fetchBuzz = (req, res) => {
 
 exports.likeDislike = (req, res) => {
     let userDetails = req.body;
+    console.log('userdetails------------------XXXXXXXXXXXXXx',userDetails);
     Object.assign(userDetails, {
         user_id: req.user._id,
     });
@@ -42,4 +44,15 @@ exports.likeDislike = (req, res) => {
             res.send(userData);
         }
     })
+};
+
+
+exports.lostAndFound = (req, res) => {
+  buzzService.fetchLostAndFound((err, lostAndFoundBuzz) => {
+    if(err){
+      res.send(err);
+    }
+    else
+      res.send(lostAndFoundBuzz);
+  })
 };

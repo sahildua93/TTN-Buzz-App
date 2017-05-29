@@ -27,15 +27,22 @@ import {
     fetchComplaintStarted,
     fetchComplaintSuccess,
     fetchComplaintFailure,
+    fetchLostAndFoundBuzzStarted,
+    fetchLostAndFoundBuzzSuccess,
+    fetchLostAndFoundBuzzFailure
 } from './action'
 import fetch from 'isomorphic-fetch';
 
 export const fetchUser = () => (dispatch) => {
     dispatch(fetchUserStarted());
+    var myHeaders = new Headers();
+    myHeaders.append('pragma', 'no-cache');
+    myHeaders.append('cache-control', 'no-cache');
     fetch('http://localhost:3004/Users/me',
         {
             method: 'get',
-            credentials: "include"
+            credentials: "include",
+            headers: myHeaders
         })
         .then(response => response.json())
         .then(data => {
@@ -150,6 +157,7 @@ export const fetchComments = () => (dispatch) => {
 };
 
 export const complaintCreate = (newComplaint) => {
+  console.log("--------------------",newComplaint);
     return (dispatch) => {
         dispatch(createComplaintStarted());
         fetch('http://localhost:3004/Complaint/create-complaint',
@@ -159,7 +167,6 @@ export const complaintCreate = (newComplaint) => {
                 body: newComplaint,
             })
             .then(response => {
-                console.log("response>>>>>>", response);
                 return response.json()
             })
             .then(data => {
@@ -188,3 +195,19 @@ export const fetchComplaint = (userId) => (dispatch) => {
         })
 };
 
+export const fetchLostAndFoundData = () => (dispatch) => {
+  console.log('1');
+  dispatch(fetchLostAndFoundBuzzStarted());
+  fetch('/Buzz/lost-found',
+    {
+      method: 'get',
+      credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(data => {
+        dispatch(fetchLostAndFoundBuzzSuccess(data));
+    })
+    .catch(error => {
+      dispatch(fetchLostAndFoundBuzzFailure(error));
+    })
+};

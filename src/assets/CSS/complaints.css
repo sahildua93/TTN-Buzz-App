@@ -15,10 +15,31 @@
 }
 label{
     color:#000080;
+    font-size: inherit;
 }
 .complaint-text-area{
     margin:0;
 }
 .complaint-btn{
     margin-left: 75%;
+}
+
+.shade-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10000;
+}
+
+.complaint-image{
+    width: 50%;
+    height: 80%;
+}
+
+.close-button {
+    font-size: 200%;
+    color: black;
 }

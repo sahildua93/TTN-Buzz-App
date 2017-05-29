@@ -3,8 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import '../../assets/CSS/login.css'
+import isAuthenticated from './isAuthenticated'
+import '../../assets/CSS/login.css';
 
+@isAuthenticated(false)
 export default class Login extends Component {
 
     constructor(props){

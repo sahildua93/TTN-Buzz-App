@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import { commentCreate } from '../Action/async.actions'
+const style = {
+    margin: 12,
+};
+
 class Comments extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +20,7 @@ class Comments extends Component {
     };
 
     submitBuzzComment = (key) => {
-        if(this.state.commentBox === ''){
+        if(this.state.commentBox.trim() === ''){
             alert("Comment feild cannot be blank ....");
             return
         }
@@ -25,6 +30,7 @@ class Comments extends Component {
                 comment: this.state.commentBox,
             };
             this.props.submitComment(commentDetails);
+            this.setState({commentBox: ''});
         }
     };
 
@@ -33,15 +39,12 @@ class Comments extends Component {
             <div>
                 <div>
                     <input type="text" name="commentBox" className="input-comment-box"
-                           placeholder="Enter comments..."
+                           placeholder="Enter comments..." value={this.state.commentBox}
                            onChange={this.changeHandler}>
                     </input>
                     <span>
-                        <button className="comment-button"
-                                type="button"
-                                onClick={() => this.submitBuzzComment(this.props.buzzId)}>
-                                Comment
-                        </button>
+                        <RaisedButton label="Comment" primary={true} style={style}
+                                      onClick={() => this.submitBuzzComment(this.props.buzzId)}/>
                     </span>
                 </div>
                 <hr/>

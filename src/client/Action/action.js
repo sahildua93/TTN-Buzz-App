@@ -27,6 +27,9 @@ import {
     FETCH_COMPLAINT_STARTED,
     FETCH_COMPLAINT_SUCCESS,
     FETCH_COMPLAINT_FAILURE,
+    FETCH_LOSTANDFOUND_STARTED,
+    FETCH_LOSTANDFOUND_SUCCESS,
+    FETCH_LOSTANDFOUND_FAILURE
 } from '../Config/constant';
 
 export function fetchUserStarted() {
@@ -121,4 +124,16 @@ export function fetchComplaintSuccess(data) {
 
 export  function fetchComplaintFailure(err) {
     return({ type: FETCH_COMPLAINT_FAILURE, err })
+}
+
+export function fetchLostAndFoundBuzzStarted() {
+  return({ type: FETCH_LOSTANDFOUND_STARTED })
+}
+
+export function fetchLostAndFoundBuzzSuccess(data) {
+  return({ type: FETCH_LOSTANDFOUND_SUCCESS, data })
+}
+
+export  function fetchLostAndFoundBuzzFailure(err) {
+  return({ type: FETCH_LOSTANDFOUND_FAILURE, err })
 }

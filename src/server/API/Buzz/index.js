@@ -20,5 +20,6 @@ buzz.use(uploadPath.single('file'));
 buzz.post('/create-buzz', buzzController.createBuzz);
 buzz.get('/fetch-buzz/:skip', buzzController.fetchBuzz);
 buzz.put('/like-dislike', buzzController.likeDislike);
+buzz.get('/lost-found' ,buzzController.lostAndFound);
 
 module.exports = buzz;

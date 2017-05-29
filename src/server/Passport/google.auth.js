@@ -1,8 +1,8 @@
+const passport = require('passport');
 const OauthConstants = require('../Constants/constant');
-let passport = require('passport');
-let googleStrategy = require('passport-google-oauth2').Strategy;
-let User = require('../API/User/user.model');
-let service = require('../API/User/user.service');
+const googleStrategy = require('passport-google-oauth2').Strategy;
+const User = require('../API/User/user.model');
+const service = require('../API/User/user.service');
 
 exports.googleAuth = () => {
     passport.use(new googleStrategy({
@@ -12,7 +12,7 @@ exports.googleAuth = () => {
         passReqToCallback: true,
         },
         (request, accessToken, refreshToken, profile, done) => {
-            if(profile._json.domain==='tothenew.com'){
+            if(profile._json.domain === 'tothenew.com'){
                 console.log("inside profile ---------------------------");
                 process.nextTick(() => {
                     User.findOne({'email_id': profile.email}, (err, user) => {
@@ -24,12 +24,12 @@ exports.googleAuth = () => {
                             return done(null, profile);
                         }
                         else {
-                            service.createUser(profile,(err,newUser)=>{
+                            service.createUser(profile,(err) => {
                                 if(err){
                                     return done(err);
                                 }
                                 else {
-                                    done(null, newUser);
+                                    done(null, profile);
                                 }
                             })
                         }

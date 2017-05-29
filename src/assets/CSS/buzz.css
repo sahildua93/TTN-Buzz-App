@@ -22,12 +22,14 @@ textarea {
 }
 
 .header select {
+    border:none;
+    transition: 2s;
+    margin-top: 10px;
+    border-bottom: 1px solid grey;
     margin-left: 15px;
     height: 31px;
-    background-color: rgba(242, 151, 18, 0.84);
-    border: none;
+    background: transparent;
     outline: none;
-    border-radius: 5px;
 }
 
 .header input[type="submit"]{
@@ -64,9 +66,18 @@ textarea {
     float: left;
 }
 
-.postby{
+.postby {
     float: left;
     margin-left: 10px;
+}
+
+.by {
+    margin-top: 4%;
+    font-style: italic;
+}
+
+.time {
+    font-style: italic;
 }
 
 .postby span {
@@ -83,7 +94,6 @@ textarea {
     font-weight: bold;
     font-size: larger;
     text-transform: uppercase;
-
 }
 
 .image {
@@ -136,6 +146,7 @@ textarea {
 }
 
 .image_upload a {
+    margin-top:12px;
     text-decoration: none;
     cursor: pointer;
     width: 50px;
@@ -174,12 +185,16 @@ textarea {
 }
 
 .input-comment-box {
-    margin: 2% 2% 0% 3%;
+    margin: 2% 2% 0 3%;
     padding-left: 1%;
     width: 70%;
-    border: 1px solid rgba(128, 128, 128, 0.44);
-    height: 40px;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: 0;
+    height: 2.1rem;
+    font-size: 1.4rem;
+    box-shadow: none;
 }
 .comments-image {
     width: 30px;
@@ -219,6 +234,10 @@ textarea {
 
 .block {
     display: inline-block;
+}
+
+.loadingScroller{
+    text-align: center;
 }
 /*.populate-buzz{*/
     /*border: 1px solid #dddddd;*/

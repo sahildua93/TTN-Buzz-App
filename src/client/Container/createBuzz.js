@@ -5,7 +5,17 @@
 import React, { Component } from 'react';
 import '../../assets/CSS/buzz.css';
 import { connect } from 'react-redux';
+import Notifications, {notify} from 'react-notify-toast';
+import RaisedButton from 'material-ui/RaisedButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import { buzzCreate } from '../Action/async.actions';
+const style = {
+    margin: 12,
+    float: "right",
+    customWidth: {
+        width: 200,
+    },
+};
 
 class CreateBuzz extends Component{
 
@@ -29,7 +39,7 @@ class CreateBuzz extends Component{
 
     createBuzzOnSubmit = (e) => {
         e.preventDefault();
-        if(this.state.category==='' || this.state.comment===''){
+        if(this.state.category.trim() ==='' || this.state.comment.trim() ===''){
             alert('Field cannot be left blank');
             return false;
         }
@@ -37,16 +47,19 @@ class CreateBuzz extends Component{
         formData.append('category', this.state.category);
         formData.append('comment', this.state.comment);
         formData.append('file', this.state.file);
+        notify.show('Buzz Created Successfully !!!  ');
         this.props.buzzCreate(formData);
+        this.setState({comment: '', category: '', file: ''});
     };
 
     render(){
         return(
             <div>
+                <Notifications />
                 <form method="post" encType="multipart/form-data">
                     <div className="main-buzz">
                         <div className="inputarea">
-                            <textarea placeholder="Type here to create Buzz...." name="comment" onChange={this.eventHandler} />
+                            <textarea placeholder="Type here to create Buzz...." name="comment" value={this.state.comment} onChange={this.eventHandler} />
                         </div>
                         <div className="header">
                             <select name="category" onChange={this.eventHandler}>
@@ -58,7 +71,7 @@ class CreateBuzz extends Component{
                                 <a className="glyphicon glyphicon-camera camera-upload" />
                                 <input type="file" name="image_url" onChange={this.imageUpload} />
                             </div>
-                            <input type="submit" value="submit" onClick={this.createBuzzOnSubmit}/>
+                            <RaisedButton label="Create Buzz" secondary={true} style={style} onClick={this.createBuzzOnSubmit}/>
                         </div>
                     </div>
                 </form>
@@ -71,7 +84,7 @@ class CreateBuzz extends Component{
 
 const mapStateToProps = (state) => ({
     buzz: state.buzz.buzz,
-    userId: state.user.user._id
+    userId: state.user.user._id,
 });
 
 const mapDispatchToProps = (dispatch, state) => ({

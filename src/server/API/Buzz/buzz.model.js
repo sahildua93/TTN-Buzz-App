@@ -13,8 +13,11 @@ const buzzSchema = new mongoose.Schema(
         comment : {
             type: String
         },
+        username : {
+          type: String
+        },
         category : {
-            type : String,
+            type : String
         },
         image : {
             type : String

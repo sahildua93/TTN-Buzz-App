@@ -33,7 +33,6 @@ export default function (state = initialState, action) {
         case FETCH_USER_FAILURE : {
             return {
                     ...state,
-                    user,
                     error: action.error,
                     loading: 'COMPLETE'
             }
