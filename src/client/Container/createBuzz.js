@@ -5,9 +5,8 @@
 import React, { Component } from 'react';
 import '../../assets/CSS/buzz.css';
 import { connect } from 'react-redux';
-import Notifications, {notify} from 'react-notify-toast';
 import RaisedButton from 'material-ui/RaisedButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import { toast } from 'react-toastify';
 import { buzzCreate } from '../Action/async.actions';
 const style = {
     margin: 12,
@@ -39,23 +38,22 @@ class CreateBuzz extends Component{
 
     createBuzzOnSubmit = (e) => {
         e.preventDefault();
-        if(this.state.category.trim() ==='' || this.state.comment.trim() ===''){
-            alert('Field cannot be left blank');
+        if(this.state.category==='' || this.state.comment===''){
+          toast.warn(<h5><b><i>Field cannot be left blank</i></b></h5>);
             return false;
         }
         const formData = new FormData();
         formData.append('category', this.state.category);
         formData.append('comment', this.state.comment);
         formData.append('file', this.state.file);
-        notify.show('Buzz Created Successfully !!!  ');
         this.props.buzzCreate(formData);
         this.setState({comment: '', category: '', file: ''});
+        toast(<h4><b><i> Buzz Created Successfully !!! </i></b></h4>);
     };
 
     render(){
         return(
             <div>
-                <Notifications />
                 <form method="post" encType="multipart/form-data">
                     <div className="main-buzz">
                         <div className="inputarea">

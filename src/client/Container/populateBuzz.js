@@ -14,6 +14,8 @@ class PopulateBuzz extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+    }
   }
 
   componentDidMount() {
@@ -35,7 +37,7 @@ class PopulateBuzz extends Component {
   };
 
   handleScroll = () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.props.allBuzzData.lazyLoadHit == true ){
       this.props.fetchBuzz();
     }
   };
@@ -100,9 +102,11 @@ class PopulateBuzz extends Component {
         </div>
         <div>
           {
-            (this.props.allBuzzData.creating ) ?
+            (this.props.allBuzzData.creating && this.props.allBuzzData.lazyLoadHit) ?
               <div className="loadingScroller"><CircularProgress size={80} thickness={5}/></div> :
-              <div></div>
+                (this.props.allBuzzData.lazyLoadHit === false)?
+                <h3 className="loadingScroller"><b>End Of Content</b></h3> :
+                <div></div>
           }
         </div>
       </div>

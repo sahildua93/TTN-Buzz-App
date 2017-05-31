@@ -5,7 +5,6 @@
 import React from 'react';
 import '../../assets/CSS/buzz.css';
 import '../../assets/CSS/model.css';
-import Model from './dislikeModel'
 
 export default ({ buzzDetails, buzzId }) => {
     let filteredList = buzzDetails.find((item) => item._id === buzzId);
@@ -13,7 +12,6 @@ export default ({ buzzDetails, buzzId }) => {
     return(
         <div className="lke-dslke-count" data-toggle="modal" data-target="#dislikeModal">
             <span>{count_dislike}</span>
-            <Model option = "dislike"/>
         </div>
     )
 }

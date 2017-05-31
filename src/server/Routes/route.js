@@ -18,7 +18,7 @@ module.exports = (app) => {
     failureRedirect: '/login'
   }), (req, res) => {
     req.session.user = {_id: req.user.id, email: req.user.email};
-    res.redirect('/profile');
+    res.redirect('/profile/buzz');
   });
 
   isAuthenticate = (req, res, next) => {

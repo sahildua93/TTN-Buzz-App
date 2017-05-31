@@ -21,6 +21,7 @@ const initialState = {
   creating: false,
   likes_updated: false,
   created: false,
+  lazyLoadHit: true,
 };
 
 export default (state = initialState, action) => {
@@ -54,13 +55,21 @@ export default (state = initialState, action) => {
       }
     }
     case FETCH_BUZZ_SUCCESS : {
+      const setLoadHit = () => {
+        if (action.data.length < 5) {
+          return false;
+        }
+        else {
+          return true;
+        }
+      };
       const buzz = state.buzz.concat(action.data);
-      //let incSkip = state.skip+5;
       return {
         ...state,
         buzz,
         creating: false,
         created: true,
+        lazyLoadHit: setLoadHit(),
         skip: state.skip + 5,
       }
     }

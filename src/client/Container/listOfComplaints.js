@@ -72,3 +72,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 const TableExampleSimpleContainer = connect(mapStateToProps, mapDispatchToProps)(TableExampleSimple);
 export default TableExampleSimpleContainer;
+

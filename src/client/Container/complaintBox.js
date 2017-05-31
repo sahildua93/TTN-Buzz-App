@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "../../assets/CSS/buzz.css";
 import {connect} from "react-redux";
 import FlatButton from 'material-ui/FlatButton';
+import { toast } from 'react-toastify';
 import RaisedButton from 'material-ui/RaisedButton';
 import {complaintCreate} from "../Action/async.actions";
 import "../../assets/CSS/complaints.css";
@@ -49,12 +50,12 @@ class Complaints extends Component {
   createBuzzOnSubmit = (e) => {
     e.preventDefault();
     if (this.state.title.trim() === '' || this.state.description.trim() === '') {
-      alert('Field cannot be left blank');
+      toast.warn(<h4><b><i>Field cannot be left blank</i></b></h4>);
       return false;
     }
     let category = this.state.category;
-    if (category !== 'Hardware' && category !== 'Software' && category !== 'IT') {
-      alert('Invalid Category');
+    if(category !== 'Hardware' && category !== 'Software' && category !== 'IT'){
+      toast.error(<h4><b><i>Invalid Category</i></b></h4>);
       return false
     }
     const formData = new FormData();
@@ -63,7 +64,8 @@ class Complaints extends Component {
     formData.append('category', this.state.category);
     formData.append('file', this.state.file);
     this.props.complaintCreate(formData);
-    this.setState({title: '', description: '', category: '', file: ''})
+    this.setState({title:'', description:'', category: ''});
+    toast(<h4><b><i>Complaint Registered Successfully</i></b></h4>);
   };
 
   render() {
@@ -83,7 +85,7 @@ class Complaints extends Component {
               <label htmlFor="Description">Description</label>
               <textarea placeholder="Enter Description" name="description"
                         className="form-control complaint-text-area" onChange={this.eventHandler}
-                        id="Description" value={this.state.description}></textarea>
+                        id="Description" value = {this.state.description}>Description</textarea>
             </div>
 
             <div className="form-group">
@@ -91,10 +93,10 @@ class Complaints extends Component {
               <input list="category_hsi" onChange={this.eventHandler} title="Select Category"
                      name="category" id="category" placeholder="Search Category"
                      className="form-control"/>
-              <datalist id="category_hsi" value={this.state.category}>
-                <option value="Hardware"></option>
-                <option value="Software"></option>
-                <option value="IT"></option>
+              <datalist id="category_hsi">
+                <option value="Hardware">Hardware</option>
+                <option value="Software">Software</option>
+                <option value="IT">IT</option>
               </datalist>
             </div>
             <FlatButton
@@ -103,8 +105,7 @@ class Complaints extends Component {
               style={styles.uploadButton}
               containerElement="label">
 
-              <input type="file" style={styles.uploadInput} value={this.state.file} name="image_url"
-                     onChange={this.imageUpload}/>
+              <input type="file" style={styles.uploadInput} name="image_url" onChange={this.imageUpload}/>
             </FlatButton>
             <RaisedButton label="Register" secondary={true} style={styles.submitButton}
                           onClick={this.createBuzzOnSubmit}/>

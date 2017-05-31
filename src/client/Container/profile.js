@@ -29,7 +29,7 @@ class Profile extends Component {
               <CreateBuzz/>
             </div>
             <div className="populate-buzz">
-              <Route path="/profile/buzz" component={ PopulateBuzz }/>
+              <Route exact path="/profile/buzz" component={ PopulateBuzz }/>
               <Route path="/profile/complaints" component={ Complaints }/>
               <Route path="/profile/lost-found" component={ LostAndFound }/>
               <Route path="/profile/all-complaints" component={ TableExampleSimple }/>
