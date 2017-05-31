@@ -28,7 +28,15 @@ class CreateBuzz extends Component{
     }
     imageUpload = (event) => {
         const file = event.target.files[0];
-        this.setState({ file })
+        const filename = file.name;
+        const extention = filename.split('.').pop();
+        if(extention === 'jpg' || extention === 'png' || extention === 'jpeg' || extention ===  'gif'){
+          this.setState({ file });
+        }
+        else {
+          toast("Unsupported File Type");
+          return false;
+        }
     };
 
     eventHandler = (event) => {
@@ -39,7 +47,7 @@ class CreateBuzz extends Component{
     createBuzzOnSubmit = (e) => {
         e.preventDefault();
         if(this.state.category==='' || this.state.comment===''){
-          toast.warn(<h5><b><i>Field cannot be left blank</i></b></h5>);
+          toast.warn("Field cannot be left blank");
             return false;
         }
         const formData = new FormData();
