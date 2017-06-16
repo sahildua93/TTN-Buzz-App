@@ -17,7 +17,7 @@ module.exports = (app) => {
   app.get('/oauth2callback', passport.authenticate('google', {
     failureRedirect: '/login'
   }), (req, res) => {
-    req.session.user = {_id: req.user.id, email: req.user.email};
+    req.session.user = {_id: req.user.id, email: req.user.email };
     res.redirect('/profile/buzz');
   });
 

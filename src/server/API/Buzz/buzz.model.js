@@ -20,7 +20,7 @@ const buzzSchema = new mongoose.Schema(
             type : String
         },
         image : {
-            type : String
+            type : Object
         },
         user_picture: {
             type: String

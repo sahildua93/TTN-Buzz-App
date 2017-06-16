@@ -63,11 +63,9 @@ export const buzzCreate = (newBuzz) => {
                 body: newBuzz,
             })
             .then(response => {
-                console.log("response>>>>>>", response);
                 return response.json()
             })
             .then(data => {
-                console.log('createsuccess------------------', data);
                 dispatch(createBuzzSuccess(data))
             })
             .catch(error => {
@@ -127,11 +125,9 @@ export const commentCreate = (newComment) => {
                 body: JSON.stringify(newComment),
             })
             .then(response => {
-                console.log("response>>>>>>", response);
                 return response.json()
             })
             .then(data => {
-                console.log('createsuccess------------------', data);
                 dispatch(createCommentSuccess(data))
             })
             .catch(error => {
@@ -157,7 +153,6 @@ export const fetchComments = () => (dispatch) => {
 };
 
 export const complaintCreate = (newComplaint) => {
-  console.log("--------------------",newComplaint);
     return (dispatch) => {
         dispatch(createComplaintStarted());
         fetch('http://localhost:3004/Complaint/create-complaint',
@@ -170,7 +165,6 @@ export const complaintCreate = (newComplaint) => {
                 return response.json()
             })
             .then(data => {
-                console.log('createsuccess------------------', data);
                 dispatch(createComplaintSuccess(data))
             })
             .catch(error => {

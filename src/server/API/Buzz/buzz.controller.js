@@ -1,13 +1,18 @@
 const buzzService = require('./buzz.service');
 
 exports.createBuzz = (req, res) => {
-    const buzzData = req.body;
-    Object.assign(buzzData, {
-        creator : req.user._id,
-        username : req.user.username,
-        user_picture:req.user.image_url,
-        image : req.file ? req.file.filename : '' ,
-    });
+  const buzzData = req.body;
+  Object.assign(buzzData, {
+    creator: req.user._id,
+    username: req.user.username,
+    user_picture: req.user.image_url,
+    image: req.files.file ?
+      {
+        public_id: req.files.file[0].public_id,
+        secure_url: req.files.file[0].secure_url
+      } :
+      '',
+  });
     buzzService.createBuzz(buzzData, (err, buzz) => {
         if (err) {
             res.send(err);
@@ -32,7 +37,6 @@ exports.fetchBuzz = (req, res) => {
 
 exports.likeDislike = (req, res) => {
     let userDetails = req.body;
-    console.log('userdetails------------------XXXXXXXXXXXXXx',userDetails);
     Object.assign(userDetails, {
         user_id: req.user._id,
     });

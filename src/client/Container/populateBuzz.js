@@ -63,8 +63,8 @@ class PopulateBuzz extends Component {
             </div>
           </div>
           <div className="image">
-            {(items.image) ?
-              <img src={ `/uploads/${items.image}`}/>
+            {(items.image.secure_url) ?
+              <img src={items.image.secure_url}/>
               :
               console.log('')
             }

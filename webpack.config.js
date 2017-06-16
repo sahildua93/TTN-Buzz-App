@@ -36,6 +36,9 @@ module.exports = {
         inline: true,
     },
     plugins: [
+      new webpack.DefinePlugin({
+        DEBUG: process.env.NODE_ENV === 'production'? JSON.stringify(false): JSON.stringify(true)
+    }),
         new liveReload()
     ]
 };

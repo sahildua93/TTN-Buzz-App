@@ -8,10 +8,12 @@ const expressSession = require('express-session');
 const webpackConfig = require('../../webpack.config');
 const router = require('./Routes/route');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const app = express();
 const compiler = webpack(webpackConfig);
 require('./Config/datasource');
+require('./Config/logger')();
+
 
 app.use(favicon(path.join(__dirname, '../assets', 'images', 'favicon.ico')));
 
@@ -33,7 +35,6 @@ app.use(bodyParser(),
     passport.session());
 
 router(app);
-
 app.use('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
@@ -41,7 +42,7 @@ app.use('/*', (req, res) => {
 const server = app.listen(3004, function () {
     const host = server.address().address;
     const port = server.address().port;
-    console.log('Server is running att ', host, port);
+    console.log('Server is running at ', host, port);
 });
 
 module.exports = app;

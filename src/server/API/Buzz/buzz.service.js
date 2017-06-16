@@ -5,6 +5,7 @@
 const Buzz = require('./buzz.model.js');
 
 exports.createBuzz = (buzzData, callback) => {
+  console.log('buzz dataaa--------=======>>>>>',buzzData);
     Buzz.create(buzzData, (err, buzz) => {
         if (err) {
             console.log('Buzz not created XXXXXX', err);
