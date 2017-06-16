@@ -67,5 +67,5 @@
     "image-webpack-loader": "^3.3.0",
     "redux-logger": "^3.0.1",
     "webpack-livereload-plugin": "^0.11.0"
-  },
+  }
 }
