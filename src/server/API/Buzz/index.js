@@ -23,7 +23,7 @@ cloudinary.config({
   api_key: cloudinaryConstants.API_KEY,
   api_secret: cloudinaryConstants.API_SECRET
 });
-let cloudinaryStorage = multerCloudinary({cloudinary: cloudinary});
+let cloudinaryStorage = multerCloudinary({cloudinary: {cloudinary}});
 let cloudinaryUpload = multer({storage: cloudinaryStorage});
 // const uploadPath = multer({storage: storage});
 
