@@ -14,6 +14,7 @@ const compiler = webpack(webpackConfig);
 require('./Config/datasource');
 require('./Config/logger')();
 
+const port = process.env.PORT || 3004;
 
 app.use(favicon(path.join(__dirname, '../assets', 'images', 'favicon.ico')));
 
@@ -39,7 +40,7 @@ app.use('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-const server = app.listen(3004, function () {
+const server = app.listen(port, function () {
     const host = server.address().address;
     const port = server.address().port;
     console.log('Server is running at ', host, port);
