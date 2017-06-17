@@ -12,6 +12,7 @@ exports.googleAuth = () => {
         passReqToCallback: true,
         },
         (request, accessToken, refreshToken, profile, done) => {
+      console.log("herere...");
             if(profile._json.domain === 'tothenew.com'){
                 console.log("inside profile ---------------------------");
                 process.nextTick(() => {

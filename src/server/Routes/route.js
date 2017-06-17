@@ -21,7 +21,7 @@ module.exports = (app) => {
     res.redirect('/profile/buzz');
   });
 
-  isAuthenticate = (req, res, next) => {
+  const isAuthenticate = (req, res, next) => {
     if (req.session.user) {
       next()
     }
