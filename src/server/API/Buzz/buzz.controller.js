@@ -52,7 +52,6 @@ exports.likeDislike = (req, res) => {
 
 
 exports.lostAndFound = (req, res) => {
-  console.log("Check Deployment.............")
   buzzService.fetchLostAndFound((err, lostAndFoundBuzz) => {
     if(err){
       res.send(err);

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "webpack",
-    "start": "NODE_ENV=production node ./src/server/server.js",
+    "start": "NODE_ENV=development node ./src/server/server.js",
     "script1": "node ./src/server/Config/logger.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
